@@ -1,0 +1,22 @@
+{
+	"name": "Management",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"sizes": {
+			"xxsmall": 100,
+			"xsmall": 300,
+			"small": 500,
+			"medium": 700,
+			"large": 900,
+			"xlarge": 1100,
+			"xxlarge": 1400
+		}
+	}
+}

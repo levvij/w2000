@@ -1,0 +1,80 @@
+{
+	"name": "Paint",
+	"icon": "mspaint/0x0002",
+	"author": "@zenos.live.4",
+	"version": "0.0.0.0",
+	"dependencies": [
+		"drawing.dll"
+	],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"defaultColor": "#000",
+		"colors": [
+			"#000",
+			"#444",
+			"#888",
+			"#bbb",
+			"#fff",
+			"#f00",
+			"#f80",
+			"#ff0",
+			"#8f0",
+			"#0f0",
+			"#0f8",
+			"#0ff",
+			"#08f",
+			"#00f",
+			"#80f",
+			"#f0f",
+			"#f08"
+		],
+		"windowSize": {
+			"width": 500,
+			"height": 400
+		},
+		"defaultSize": {
+			"width": 400,
+			"height": 300
+		}
+	},
+	"opens": [
+		{
+			"ext": "jpg",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "jpeg",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "png",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "gif",
+			"icon": "paint/0x0003"
+		}
+	],
+	"edits": [
+		{
+			"ext": "jpg",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "jpeg",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "png",
+			"icon": "paint/0x0003"
+		},
+		{
+			"ext": "gif",
+			"icon": "paint/0x0003"
+		}
+	]
+}

@@ -1,0 +1,125 @@
+{
+	"name": "Presentation Framework",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"linkIcon": "shell32/0x001E",
+		"pageIcon": {
+			"default": "shell32/0x0010",
+			"defaultProgram": "shell32/0x0003"
+		},
+		"csc": {
+			"root": "c/windows/csc/"
+		},
+		"fontgen": {
+			"sizes": [
+				11,
+				12,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25
+			],
+			"weights": [
+				"normal",
+				"bold"
+			],
+			"forcedSize": 12,
+			"families": [{
+				"forced": true,
+				"varName": "",
+				"name": "tahoma-regular",
+				"file": "c/windows/fonts/tahoma-%w.ttf"
+			}]
+		},
+		"window": {
+			"minWidth": 100,
+			"minHeigth": 50,
+			"minDisplayBorderOffset": {
+				"x": 25,
+				"y": 25
+			},
+			"initialOffset": {
+				"x": 20,
+				"y": 20
+			},
+			"initialPosition": {
+				"x": 50,
+				"y": 50
+			},
+			"borderSize": {
+				"x": 6,
+				"y": 33
+			}
+		},
+		"ui": {
+			"openFileDialog": {
+				"title": "Open",
+				"done": "Done",
+				"width": 500,
+				"height": 400
+			},
+			"buttonWindow": {
+				"width": 350,
+				"height": 120
+			},
+			"keys": {
+				"ctrl": "Ctrl",
+				"f1": "F1",
+				"f2": "F2",
+				"f3": "F3",
+				"f4": "F4",
+				"f5": "F5",
+				"f6": "F6",
+				"f7": "F7",
+				"f8": "F8",
+				"f9": "F9",
+				"f10": "F10",
+				"f11": "F11",
+				"f12": "F12"
+			},
+			"messageBox": {
+				"ok": "OK",
+				"error": {
+					"icon": "explorer/0x006F",
+					"title": "Error"
+				},
+				"warning": {
+					"icon": "explorer/0x006E",
+					"title": "Warning"
+				},
+				"info": {
+					"icon": "explorer/0x006D",
+					"title": "Info"
+				}
+			},
+			"chart": {
+				"itemHeight": 12,
+				"itemMarginBottom": 5,
+				"scale": 0.4,
+				"height": 12,
+				"template": "%t: %v",
+				"fill": "#FFFFFF",
+				"fillDark": "#e5e3de",
+				"colorTemplate": "hsl(%v, 90%, 40%)",
+				"colorDelta": 39,
+				"colorStart": 230
+			}
+		},
+		"mouse": {
+			"contextMenu": 500,
+			"doubleClick": 200
+		},
+		"tooltip": {
+			"timeout": 1500
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "Icons",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"qualities": [0, 1],
+		"sizes": [64, 48, 32, 16, 8, 4, 2, 96],
+		"statics": {
+			"directory": "shell32/0x0004",
+			"computer": "explorer/0x0064",
+			"program": "shell32/0x0003",
+			"library": "shell32/0x009A",
+			"web": "mshtml/0x0A65",
+			"default": "shell32/0x0001",
+			"disk": "shell32/0x0009",
+			"notFound": "shell32/0x00C8",
+			"link": "shell32/0x001E"
+		},
+		"moduleInner": "%f/icons/%a"
+	}
+}

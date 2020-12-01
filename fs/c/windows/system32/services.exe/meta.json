@@ -1,0 +1,93 @@
+{
+	"name": "Service Manager",
+	"icon": "shell32/0x0019",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"usage": {
+		"description": "Starts services from services.json",
+		"arguments": [
+			{
+				"pattern": [],
+				"action": "Starts all services"
+			},
+			{
+				"pattern": [
+					"a"
+				],
+				"action": "Starts all services and wait for all of them to exit"
+			},
+			{
+				"pattern": [
+					"r",
+					{
+						"type": "object",
+						"name": "service"
+					}
+				],
+				"action": "Registers a new service and removes old version if present"
+			},
+			{
+				"pattern": [
+					"l"
+				],
+				"action": "List all services"
+			},
+			{
+				"pattern": [
+					"s",
+					{
+						"type": "string",
+						"name": "service id"
+					}
+				],
+				"action": "Start service by id"
+			},
+			{
+				"pattern": [
+					"s",
+					{
+						"type": "string",
+						"name": "service id"
+					},
+					"a"
+				],
+				"action": "Start service by id and wait for exit"
+			},
+			{
+				"pattern": [
+					"x",
+					{
+						"type": "string",
+						"name": "service id"
+					}
+				],
+				"action": "Remove service with id"
+			},
+			{
+				"pattern": [
+					"x",
+					{
+						"type": "string",
+						"name": "service id"
+					},
+					"f"
+				],
+				"action": "Remove service with id without running the installer"
+			}
+		]
+	},
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"opens": [
+		{
+			"ext": "msc"
+		}
+	],
+	"configuration": {
+		"version": "0.0.0.0"
+	}
+}

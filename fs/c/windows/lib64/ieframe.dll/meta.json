@@ -1,0 +1,20 @@
+{
+	"name": "Internet Frame",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"paths": {
+			"SCROLL_BACKGROUND": "c/windows/branding/scroll/background.png",
+			"SCROLL_UP": "c/windows/branding/scroll/up.png",
+			"SCROLL_DOWN": "c/windows/branding/scroll/down.png",
+			"SCROLL_LEFT": "c/windows/branding/scroll/left.png",
+			"SCROLL_RIGHT": "c/windows/branding/scroll/right.png"
+		}
+	}
+}

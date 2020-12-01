@@ -1,0 +1,44 @@
+{
+	"name": "Installation Manager",
+	"icon": "",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"usage": {
+		"description": "Installs all .msi installers from configuration.msi",
+		"arguments": [
+			{
+				"pattern": [],
+				"action": "Installs all packages from the default location (configuration.msi)"
+			},
+			{
+				"pattern": [
+					"r",
+					{
+						"type": "directory-path",
+						"name": "path"
+					}
+				],
+				"action": "Installs all packages from given location"
+			}
+		]
+	},
+	"requirements": {
+		"os": {
+			"version": "0.0.9.9"
+		}
+	},
+	"opens": [
+		{
+			"ext": "msi"
+		}
+	],
+	"configuration": {
+		"msi": "c/windows/msi",
+		"registerService": [
+			"c/windows/system32/services.exe",
+			"-r",
+			"%f"
+		]
+	}
+}

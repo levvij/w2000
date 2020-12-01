@@ -1,0 +1,31 @@
+{
+	"name": "Command Prompt",
+	"icon": "cmd/0x0000",
+	"author": "@qregy",
+	"version": "1.0.0.0",
+	"dependencies": [
+		"shell32.dll"
+	],
+	"requirements": {
+		"os": {
+			"version": "0.0.9.9.2"
+		}
+	},
+	"opens": [
+		{
+			"ext": "cmd",
+			"icon": "shell32/0x0099"
+		},
+		{
+			"ext": "bat",
+			"icon": "shell32/0x0099"
+		},
+		{
+			"ext": "$"
+		}
+	],
+	"edits": [],
+	"configuration": {
+		"defaultPath": "c/"
+	}
+}

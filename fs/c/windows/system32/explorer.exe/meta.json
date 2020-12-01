@@ -1,0 +1,30 @@
+{
+	"name": "File Explorer",
+	"icon": "explorer/0x0064",
+	"author": "@rasierschum",
+	"version": "0.0.0.0",
+	"dependencies": [
+		"drawing.dll"
+	],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"opens": [
+		{
+			"ext": "."
+		},
+		{
+			"ext": ""
+		},
+		{
+			"ext": "lnk"
+		}
+	],
+	"edits": [
+		{
+			"ext": "lnk"
+		}
+	]
+}

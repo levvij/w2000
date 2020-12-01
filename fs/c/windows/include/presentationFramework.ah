@@ -1,0 +1,61 @@
+extern class Window {
+	constructor(string title, number width, number height, Window? parent) {}
+	
+	static instances: Window[];
+	static activeWindow: Window?;
+	static moving: Window?;
+	
+	// Events
+	static onopen: Event;
+	static onactivechange: Event;
+	static onclose: Event;
+	static onstatechange: Event;
+	static ontitlechange: Event;
+	static oniconchange: Event;
+	
+	static function activate(Window window) {}
+	static function activateTop() {}
+	
+	active: bool;
+	childWindows: Window[];
+	height: number;
+	icon: string;
+	id: string;
+	maximized: bool;
+	minimized: bool;
+	memoryUsage: number;
+	parent: Window?;
+	prestinePosition: bool;
+	process: Process;
+	renderFunction: Function?;
+	state: WindowState;
+	width: number;
+	x: number;
+	y: number;
+	z: number;
+	
+	onchildcreate: Event;
+	onclose: Event;
+	onerror: Event;
+	oniconchange: Event;
+	onmousedown: Event;
+	onmousemove: Event;
+	onmouseup: Event;
+	onresize: Event;
+	onstatechange: Event;
+	ontitlechange: Event;
+	
+	function bindKey(string key, Function action) {}
+	function blur() {}
+	function close() {}
+	function createChildWindow(string title, number width, number height): Window {}
+	function focus() {}
+	function highlight() {}
+	function max() {}
+	function min() {}
+	function render(Function? renderer) {}
+	function restore() {}
+	function unhighlight() {}
+}
+
+extern class WindowState {}

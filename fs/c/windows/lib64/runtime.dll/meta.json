@@ -1,0 +1,34 @@
+{
+	"name": "Runtime",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"path": {
+			"temp": "c/tmp/%i/"
+		},
+		"wizard": {
+			"window": {
+				"width": 500,
+				"height": 350
+			},
+			"welcome": {
+				"continue": "To continue, click Next."
+			},
+			"back": "< Back",
+			"next": "Next >",
+			"cancel": "Cancel",
+			"finish": "Finish",
+			"install": {
+				"delay": 50
+			},
+			"failed": "Installation failed: Step %s failed: %e",
+			"done": "Installation completed"
+		}
+	}
+}

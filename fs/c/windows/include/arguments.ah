@@ -1,0 +1,4 @@
+extern class Arguments {
+	function has(string name): bool {}
+	function get(string name): bool {}
+}

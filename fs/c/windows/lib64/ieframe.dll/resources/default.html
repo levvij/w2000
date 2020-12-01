@@ -1,0 +1,154 @@
+<!-- bridge scripts -->
+
+<script>
+
+	// go to new page
+	function NAMESPACE_link(url) {
+		parent.postMessage(JSON.stringify([
+			"NAMESPACE", "link", url
+		]), parent.origin);
+	}
+	
+	// submit form
+	function NAMESPACE_form(element, url, method) {
+		const data = {};
+		
+		for (let item of element.querySelectorAll("input[name], textarea[name]")) {
+			if (item.type != "submit" || item.flag) {
+				data[item.name] = item.value;
+			}
+		}
+		
+		parent.postMessage(JSON.stringify([
+			"NAMESPACE", "form", url, method, data
+		]), parent.origin);
+		
+		return false;
+	}
+	
+	// set flag on submit element
+	function NAMESPACE_submit(element) {
+		element.flag = true;
+	}
+	
+	// push keyevents to parent, except when in a input/textarea
+	addEventListener("keydown", event => {
+		if (![
+			"input", "textarea"
+		].includes(event.target.tagName.toLowerCase())) {
+			parent.postMessage(JSON.stringify([
+				"NAMESPACE", "keydown", {
+					key: event.key,
+					ctrlKey: event.ctrlKey,
+					shiftKey: event.shiftKey,
+					altKey: event.altKey
+				}
+			]), parent.origin);
+		}
+	});
+	
+	// push contextmenu event to parent
+	addEventListener("contextmenu", event => {
+		parent.postMessage(JSON.stringify([
+			"NAMESPACE", "context", {
+				x: event.pageX,
+				y: event.pageY
+			}
+		]));
+		
+		event.preventDefault();
+	});
+	
+	addEventListener("mousemove", event => {
+		const element = getComputedStyle(event.target);
+		
+		parent.postMessage(JSON.stringify([
+			"NAMESPACE", "cursor", {
+				x: event.pageX - scrollX,
+				y: event.pageY - scrollY,
+				cursor: element.getPropertyValue("--cursor") || "default"
+			}
+		]));
+	});
+	
+</script>
+
+<style>
+	
+	* {
+		cursor: none;
+	}
+	
+	a {
+		--cursor: pointer;
+	}
+	
+	input, textarea {
+		--cursor: text;
+	}
+	
+	/* add link colors */
+	a[onclick] {
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	
+	/* show no-script tags (noscript -> no-script) */
+	no-script {
+		display: block;
+	}
+	
+	/* windows 2000 styled scrollbars */
+	::-webkit-scrollbar { 
+		width: 16px;
+		height: 16px;
+		image-rendering: pixelated;
+		background: url('SCROLL_BACKGROUND') repeat;
+		background-size: 2px 2px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #D6D3CE;
+		border: 1px solid #D6D3CE;
+		border-bottom-color: #424142;
+		border-right-color: #424142;
+		box-shadow: inset 0 1px 0 0px #FFFFFF, inset 0 -1px 0 0px #848284, inset 1px 0 0 0px #FFFFFF, inset -1px 0 0 0px #848284;
+	}
+
+	::-webkit-scrollbar-button:vertical:start:increment, 
+	::-webkit-scrollbar-button:vertical:end:increment,
+	::-webkit-scrollbar-button:horizontal:start:increment,
+	::-webkit-scrollbar-button:horizontal:end:increment {
+		display: block;
+		position: relative;
+		width: 16px;
+		height: 16px;
+		image-rendering: pixelated;
+		background: #D6D3CE;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 100%;
+	}
+
+	::-webkit-scrollbar-button:vertical:start:increment {
+		background-image: url('SCROLL_UP');
+	}
+
+	::-webkit-scrollbar-button:vertical:end:increment {
+		background-image: url('SCROLL_RIGHT');
+	}
+
+	::-webkit-scrollbar-button:horizontal:start:increment {
+		background-image: url('SCROLL_LEFT');
+	}
+
+	::-webkit-scrollbar-button:horizontal:end:increment {
+		background-image: url('SCROLL_RIGHT');
+	}
+
+	::-webkit-scrollbar-corner {
+		background: #D6D3CE;
+	}
+	
+</style>

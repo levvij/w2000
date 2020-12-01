@@ -1,0 +1,27 @@
+cursor {
+	position: fixed;
+	top: calc(50vh - 32px);
+	left: calc(50vw - 32px);
+	z-index: 10000001;
+	background-repeat: no-repeat;
+	height: 64px;
+	width: 64px;
+	pointer-events: none;
+	margin-top: -32px;
+	margin-left: -32px;
+}
+
+cursor[type="arrow"],
+cursor[type="busy"],
+cursor[type="help"],
+cursor[type="move"],
+cursor[type="no"],
+cursor[type="pen"],
+cursor[type="resize-ew"],
+cursor[type="resize-nw"],
+cursor[type="resize-se"],
+cursor[type="resize-sw"],
+cursor[type="up"],
+cursor[type="wait"] {
+	filter: drop-shadow(2px 1px 1px rgba(0, 0, 0, 0.6));
+}

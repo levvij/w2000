@@ -1,0 +1,297 @@
+body[beta],
+body[beta] workspace {
+	background-color: #000;
+}
+
+body[lock] {
+	cursor: progress;
+}
+
+body[lock]:after {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+program[active] {
+	background: linear-gradient(45deg, #FFFFFF 25%, transparent 25%), 
+		linear-gradient(-45deg, #FFFFFF 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, #FFFFFF 75%), 
+		linear-gradient(-45deg, transparent 75%, #FFFFFF 75%);
+	background-size: 2px 2px;
+	background-position: 0 0, 0 1px, 1px -1px, -1px 0px;
+	font-weight: bold;
+}
+
+workspace {
+	height: 100%;
+	background: #396DA5;
+	border-bottom: 1px solid #D6D3CE;
+	overflow: hidden;
+	position: relative;
+}
+
+task-bar {
+	display: flex;
+	position: relative;
+	border-top: 1px solid #FFFFFF;
+	background: #D6D3CE;
+	padding: 0 2px;
+	margin-bottom: -40px;
+	padding-bottom: 42px;
+	height: 25px;
+	width: calc(100% - 4px);
+}
+
+programs {
+	flex-grow: 1;
+	position: relative;
+	height: 26px;
+	white-space: nowrap;
+}
+
+programs program {
+	display: inline-flex;
+	margin: 2px 1px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	@font11();
+	padding: 1px;
+	line-height: 1.1;
+	width: 150px;
+}
+
+@media (max-width: 700px) {
+	programs program {
+		width: 80px;
+	}
+}
+
+programs-inner {
+	display: flex;
+	position: absolute;
+	left: 18px;
+	top: 0;
+	bottom: 0;
+	right: 2px;
+}
+
+programs program img {
+	width: 16px;
+	height: 16px;
+	margin: 1px;
+	margin-right: 2px;
+}
+
+programs program text {
+	padding: 3px;
+	align-self: baseline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+task-bar bar {
+	display: inline-block;
+	position: absolute;
+	width: 1px;
+	border: 1px solid #848284;
+	border-left-color: #FFFFFF;
+	border-top-color: #FFFFFF;
+	top: 4px;
+	left: 10px;
+	bottom: 4px;
+}
+
+task-bar bar:before {
+	content: "";
+	position: absolute;
+	left: -6px;
+	top: -3px;
+	bottom: -3px;
+	border-left: 1px solid #848484;
+	border-right: 1px solid #FFFFFF;
+}
+
+task-bar tray {
+	display: flex;
+	margin-bottom: 1px;
+	margin-top: 2px;
+	border: 1px solid red;
+	padding: 2px 5px;
+	@font11();
+	border: 1px solid #848284;
+	border-bottom-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+}
+
+task-bar tray-items {
+	display: flex;
+}
+
+task-bar tray-item {
+	margin-right: 5px;
+}
+
+task-bar tray-date {
+	line-height: 1.35;
+}
+
+task-bar start {
+	padding-left: 22px;
+	@font12bold();
+	margin-bottom: 1px;
+	margin-top: 2px;
+	line-height: 0.8;
+}
+
+start:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 3px;
+	bottom: 0;
+	right: 0;
+	background: @root('c/windows/branding/start.jpg') left center no-repeat;
+}
+
+start~start-popup,
+start~start-overlay {
+	display: none;
+}
+
+start[open]~start-overlay {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+start[open]~start-popup {
+	display: flex;
+	position: fixed;
+	bottom: 28px;
+	left: 3px;
+	width: 250px;
+	min-height: 300px;
+	z-index: 100000000;
+	padding: 1px;
+	image-rendering: pixelated;
+}
+
+start-banner {
+	width: 22px;
+	background: @root('c/windows/branding/banner.png') left bottom no-repeat;
+	background-color: #000000;
+	background-position: 0 100%;
+}
+
+start-list {
+	width: 100%;
+}
+
+start-popup line {
+	margin: 0 4px;
+	border-top: 1px solid #848484;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+start-item {
+	padding: 4px;
+	display: flex;
+	align-items: center;
+}
+
+start-item img {
+	height: 26px;
+	image-rendering: auto;
+	padding-left: 3px;
+}
+
+start-item-text {
+	padding-left: 10px;
+}
+
+start-item:hover {
+	color: #FFFFFF;
+	background: #000080;
+}
+
+desktop {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	height: 100%;
+	align-content: flex-start;
+}
+
+desktop-item {
+	position: relative;
+	width: 90px;
+	height: 70px;
+	color: #FFFFFF;
+	text-align: center;
+	margin-top: 10px;
+}
+
+desktop-item img {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	right: 0;
+	height: 32px;
+	width: 100%;
+	object-fit: contain;
+}
+
+desktop-item text {
+	position: absolute;
+	top: 40px;
+	left: 5px;
+	right: 5px;
+	bottom: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+desktop-item text[contenteditable] {
+	background: white;
+	color: black;
+	bottom: unset;
+	z-index: 1;
+	text-overflow: unset;
+}
+
+desktop-item[selected] text {
+	background: #0A246A;
+	color: #FFFFFF;
+}
+
+desktop-item text-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: red;
+}
+
+select-area {
+	position: absolute;
+	border: 1px dotted #C5915A;
+}
+
+dev-info {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	white-space: pre;
+	text-align: right;
+	color: #fff5;
+}

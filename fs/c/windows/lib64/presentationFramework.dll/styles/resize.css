@@ -1,0 +1,94 @@
+resize-t,
+resize-tr,
+resize-r,
+resize-br,
+resize-b,
+resize-bl,
+resize-l,
+resize-tl {
+	position: absolute;
+}
+
+resize-t,
+resize-tr,
+resize-br,
+resize-bl,
+resize-b,
+resize-tl {
+	height: 6px;
+}
+
+resize-t,
+resize-b {
+	left: 3px;
+	right: 3px;
+	width: calc(100% - 6px);
+}
+
+resize-l,
+resize-tr,
+resize-br,
+resize-bl,
+resize-r,
+resize-tl {
+	width: 6px;
+}
+
+resize-l,
+resize-r {
+	top: 3px;
+	right: 3px;
+	height: calc(100% - 6px);
+}
+
+resize-l,
+resize-tl,
+resize-bl {
+	left: -2px;
+}
+
+resize-t,
+resize-tl,
+resize-tr {
+	top: -2px;
+}
+
+resize-b,
+resize-bl,
+resize-br {
+	bottom: -2px;
+}
+
+resize-r,
+resize-tr,
+resize-br {
+	right: -2px;
+}
+
+resize-tr,
+resize-br,
+resize-bl,
+resize-tl {
+	width: 7px;
+	height: 7px;
+}
+
+resize-t,
+resize-b {
+	@cursor('resize-ns');
+}
+
+resize-l,
+resize-r {
+	@cursor('resize-ew');
+}
+
+resize-tr,
+resize-bl {
+	@cursor('resize-sw');
+}
+
+resize-tl,
+resize-br {
+	@cursor('resize-se');
+}

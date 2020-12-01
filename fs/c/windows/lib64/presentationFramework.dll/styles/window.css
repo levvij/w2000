@@ -1,0 +1,162 @@
+window {
+	display: flex;
+	position: absolute;
+	background: #C0C0C0;
+	border: 1px solid #404040;
+	border-top: 1px solid #D4D0C8;
+	border-left: 1px solid #D4D0C8;
+}
+
+window[highlight]:after {
+	content: "";
+	position: absolute;
+	z-index: 1000;
+	background: rgba(255, 255, 0, 0.3);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+}
+
+window-inner {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 6px);
+	padding: 2px;
+	background: #D4D0C8;
+	border: 1px solid #808080;
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+}
+
+window-title {
+	position: relative;
+	background: linear-gradient(to right, #808080, #C0C0C0);
+	@font12();
+	padding: 2px;
+	padding-right: 55px;
+	margin-bottom: 1px;
+	color: #FFFFFF;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex-shrink: 0;
+	height: auto;
+}
+
+window-title[icon] {
+	padding-left: 18px;
+}
+
+window-title img {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	height: 16px;
+	width: 16px;
+}
+
+window-buttons {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+window-cover {
+	display: block;
+	background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+window[active] window-cover {
+	display: none;
+}
+
+window[active] window-title {
+	background: linear-gradient(to right, #0A246A, #A6CAF0);
+	font-weight: bold;
+}
+
+window-body {
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	overflow: hidden;
+}
+
+window-buttons button {
+	padding: 0;
+    height: 14px;
+    width: 16px;
+    margin: 2px;
+    display: inline-block;
+	background-size: 13px 11px;
+    background-repeat: no-repeat;
+	background-position: top left;
+	@cursor('arrow');
+}
+
+window-buttons button:active {
+	background-position: 1px 1px;
+}
+
+window-buttons button[min] {
+	margin-right: 0;
+}
+
+window-buttons button[max] {
+	margin: 2px 0;
+}
+
+window[min] {
+	display: none;
+}
+
+window[max] {
+	border: none;
+	position: absolute;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+window[max] window-inner {
+	border: none;
+	padding: 0;
+	width: 100%;
+}
+
+window[max] window-buttons {
+	top: 0;
+	right: 0;
+}
+
+window[max] resize-t,
+window[max] resize-tr,
+window[max] resize-r,
+window[max] resize-br,
+window[max] resize-b,
+window[max] resize-bl,
+window[max] resize-l,
+window[max] resize-tl {
+	display: none;
+}
+
+window[resizing] window-inner,
+window[moving] window-body {
+	pointer-events: none;
+}
+
+window > canvas {
+	width: 100%;
+	height: 100%;
+}

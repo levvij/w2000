@@ -1,0 +1,11 @@
+{
+	"name": "Mobile",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	}
+}

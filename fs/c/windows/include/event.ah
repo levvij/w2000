@@ -1,0 +1,7 @@
+extern class Event extends Function {
+	constructor(string name) {}
+	
+	function subscribe() {
+		
+	}
+}

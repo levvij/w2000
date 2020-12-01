@@ -1,0 +1,26 @@
+{
+	"name": "Networking",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"dns": "https://dotcdn.us/wprx/dns/",
+		"proxy": [
+			"https://dotcdn.us/wprx/"
+		],
+		"hosts": {
+			"localhost": "%c"
+		},
+		"speed": 0,
+		"nogap": {
+			"address": "wss://nogap.dotcdn.us/",
+			"version": "1.0.1.0",
+			"reconnectDelay": 1000
+		}
+	}
+}

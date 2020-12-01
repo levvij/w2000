@@ -1,0 +1,12 @@
+{
+	"name": "Systen",
+	"icon": "shell32/0x0028",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	}
+}

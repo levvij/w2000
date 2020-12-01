@@ -1,0 +1,52 @@
+{
+	"name": "Notepad",
+	"icon": "notepad/0x0001",
+	"author": "@schmelzis",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"opens": [
+		{
+			"ext": "txt",
+			"icon": "shell32/0x0098"
+		},
+		{
+			"ext": "json",
+			"icon": "shell32/0x0097"
+		}
+	],
+	"edits": [
+		{
+			"ext": "bat",
+			"icon": "shell32/0x0099"
+		},
+		{
+			"ext": "txt",
+			"icon": "shell32/0x0098"
+		},
+		{
+			"ext": "json",
+			"icon": "shell32/0x0097"
+		},
+		{
+			"ext": "*",
+			"icon": "shell32/0x0001"
+		}
+	],
+	"creates": [
+		{
+			"ext": "txt",
+			"content": "",
+			"name": "Text Document"
+		},
+		{
+			"ext": "json",
+			"content": "{}",
+			"name": "JSON Configuration"
+		}
+	]
+}

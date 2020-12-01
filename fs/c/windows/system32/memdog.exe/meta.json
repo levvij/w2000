@@ -1,0 +1,40 @@
+{
+	"name": "Memory Usage",
+	"icon": "",
+	"author": "@ufgregt",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"usage": {
+		"description": "Shows memory usage",
+		"arguments": [
+			{
+				"pattern": [
+					"f"
+				],
+				"action": "Hides free memory"
+			},
+			{
+				"pattern": [
+					"b"
+				],
+				"action": "Hides browser memory"
+			},
+			{
+				"pattern": [
+					"i",
+					{
+						"type": "number",
+						"name": "interval",
+						"default": 100
+					}
+				],
+				"action": "Set custom updating interval"
+			}
+		]
+	}
+}

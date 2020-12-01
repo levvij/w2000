@@ -1,0 +1,1 @@
+globalConsole.hide();

@@ -1,0 +1,41 @@
+{
+	"name": "File System",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"name": {
+			"computer": "My Computer",
+			"disk": "Disk (%d:)"
+		},
+		"paths": {
+			"user": {
+				"path": "c/users/guest/",
+				"desktop": "c/users/guest/desktop",
+				"documents": "c/users/guest/documents",
+				"music": "c/users/guest/music",
+				"start": "c/windows/ime/start",
+				"bin": "c/users/guest/$recycle-bin"
+			},
+			"programData": "c/programData/%a/%n@%h/"
+		},
+		"sizes": [
+			"KB", 
+			"MB", 
+			"GB", 
+			"TB"
+		],
+		"names": {
+			"disk": "Disk",
+			"directory": "File Folder",
+			"file": "File",
+			"program": "Program",
+			"library": "Library"
+		}
+	}
+}

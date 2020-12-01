@@ -1,0 +1,27 @@
+{
+	"name": "Network Drive Manager",
+	"icon": "",
+	"author": "@levvij",
+	"version": "0.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0.0.9.9.2"
+		}
+	},
+	"configuration": {
+		"providers": "%p/providers/",
+		"list": "%p/%t.json",
+		"defaultProxy": "https://dotcdn.us/fsbridge/ftp/"
+	},
+	"hubs": [
+		{
+			"hub": "add-remote-storage-location",
+			"data": {
+				"name": "FTP Connection",
+				"start": []
+			},
+			"anonymous": false
+		}
+	]
+}

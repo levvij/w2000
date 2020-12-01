@@ -1,0 +1,43 @@
+{
+	"name": "Background",
+	"author": "@levvij",
+	"version": "1.0.0.0",
+	"dependencies": [],
+	"requirements": {
+		"os": {
+			"version": "0"
+		}
+	},
+	"configuration": {
+		"icons": {
+			"link": "shell32/0x001E"
+		},
+		"autostart": [
+			"c/windows/system32/cmd.exe", 
+			"c/windows/system/autorun.bat", 
+			"-h"
+		],
+		"move": [
+			"c/windows/system32/explorer.exe",
+			"-m",
+			"%s",
+			"%d"
+		],
+		"properties": [
+			"c/windows/system32/explorer.exe",
+			"-p",
+			"%f"
+		],
+		"desktop": {
+			"items": [
+				"links/my-documents.lnk",
+				"links/computer.lnk",
+				"links/bin.lnk"
+			],
+			"bin": {
+				"full": "shell32/0x0021",
+				"empty": "shell32/0x0020"
+			}
+		}
+	}
+}
