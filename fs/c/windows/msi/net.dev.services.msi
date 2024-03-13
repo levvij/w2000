@@ -1,14 +1,5 @@
 {
 	"id": "net.dev.services",
 	"name": "Network Device Services",
-	"services": [
-		{
-			"id": "netshell",
-			"name": "Network Device Mounter",
-			"start": [
-				"c/windows/system32/netshell.exe",
-				"-m"
-			]
-		}
-	]
+	"services": []
 }

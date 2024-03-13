@@ -28,21 +28,13 @@ const config = {
                 start: "c/windows/ime/start.ime"
             }
         },
-        providers: [{
-                type: "stzr",
-                name: "Cloud",
-                key: "stzr_key",
-                root: "https://dotcdn.us/stzr/container/%c/%p",
-                order: 1000,
-                api: {
-                    create: "https://dotcdn.us/stzr/create/",
-                    meta: "https://dotcdn.us/stzr/meta/",
-                    write: "https://dotcdn.us/stzr/write/",
-                    mkdir: "https://dotcdn.us/stzr/mkdir/",
-                    link: "https://dotcdn.us/stzr/link/",
-                    delete: "https://dotcdn.us/stzr/delete/"
-                }
-            },
+        providers: [
+        	{
+         		type: "lssp",
+           		name: "Local",
+             	fileIndex: "files",
+              	root: "blob-"
+         	},
             {
                 type: "rrsp",
                 order: 1,

@@ -42,9 +42,9 @@
 					$lines = explode("\n", file_get_contents("$p/$f"));
 					
 					$info["link"] = [
-						"path" => trim(@$lines[0]),
-						"title" => trim(@$lines[1]),
-						"icon" => trim(@$lines[2]),
+						"path" => trim(empty(@$lines[0]) ? "" : @$lines[0]),
+						"title" => trim(empty(@$lines[1]) ? "" : @$lines[1]),
+						"icon" => trim(empty(@$lines[2]) ? "" : @$lines[2]),
 					];
 				}
 				

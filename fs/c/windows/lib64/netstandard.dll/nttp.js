@@ -2,9 +2,9 @@ function NTTP() {
 	// nttp context node
 	const public = {
 		// request from URL
-		async request(urrl, options = {}) {
+		async request(source, options = {}) {
 			// parse URL
-			const url = new Networking.URL(urrl);
+			const url = new Networking.URL(source);
 			const client = NoGap.Client(url.hostname);
 			
 			// set body length if POST request

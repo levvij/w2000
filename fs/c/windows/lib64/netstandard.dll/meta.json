@@ -16,11 +16,6 @@
 		"hosts": {
 			"localhost": "%c"
 		},
-		"speed": 0,
-		"nogap": {
-			"address": "wss://nogap.dotcdn.us/",
-			"version": "1.0.1.0",
-			"reconnectDelay": 1000
-		}
+		"speed": 0
 	}
 }
