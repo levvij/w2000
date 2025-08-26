@@ -43,8 +43,8 @@ const config = {
                 deleteList: "rrsp_dl"
             }
         ],
-        root: "fs/",
-        ray: "fs/ray.php",
+        root: "root/blob/",
+        ray: "root/index",
         prefix: "wray_fsx_",
         disk: "c/",
         icons: {

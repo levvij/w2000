@@ -1,35 +1,35 @@
 <head>
-	<link rel="stylesheet" href="main.css" />
+	<link rel="stylesheet" href="/main.css" />
 	<link rel="icon" type="image/png" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-title" content="Windows">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="apple-touch-icon" href="fs/c/windows/branding/icon.png">
-	
+	<link rel="apple-touch-icon" href="root/blob/c/windows/branding/icon.png">
+
 	<title>Booting...</title>
-	
-	<script src="fs/c/windows/lib64/console.dll/main.js"></script>
-	<script src="fs/c/windows/lib64/console.dll/console.js"></script>
-	<script src="fs/c/windows/lib64/console.dll/color-console.js"></script>
-	<script src="fs/c/windows/lib64/console.dll/unit.js"></script>
-	<script src="fs/c/windows/ime/root.js"></script>
-	
-	<script src="fs/c/windows/ime/gen/beta.js"></script>
-	<script src="fs/c/windows/ime/gen/buildTime.js"></script>
-	<script src="fs/c/windows/ime/gen/iquery.js"></script>
-	<script src="fs/c/windows/ime/gen/productName.js"></script>
-	<script src="fs/c/windows/ime/gen/rc.js"></script>
-	<script src="fs/c/windows/ime/gen/rrsp.js"></script>
-	<script src="fs/c/windows/ime/gen/version.js"></script>
+
+	<script src="root/blob/c/windows/lib64/console.dll/main.js"></script>
+	<script src="root/blob/c/windows/lib64/console.dll/console.js"></script>
+		<script src="root/blob/c/windows/lib64/console.dll/color-console.js"></script>
+		<script src="root/blob/c/windows/lib64/console.dll/unit.js"></script>
+		<script src="root/blob/c/windows/ime/root.js"></script>
+
+		<script src="root/blob/c/windows/ime/gen/beta.js"></script>
+		<script src="root/blob/c/windows/ime/gen/buildTime.js"></script>
+		<script src="root/blob/c/windows/ime/gen/iquery.js"></script>
+		<script src="root/blob/c/windows/ime/gen/productName.js"></script>
+		<script src="root/blob/c/windows/ime/gen/rc.js"></script>
+		<script src="root/blob/c/windows/ime/gen/rrsp.js"></script>
+		<script src="root/blob/c/windows/ime/gen/version.js"></script>
 </head>
 
 <body>
 	<screen>
 		<workspace>
 			<p>
-				Your browser does not support W2000. 
+				Your browser does not support W2000.
 				Use this page with a new version of Google Chrome, Safari or Chromium.
 			</p>
 		</workspace>
@@ -44,55 +44,55 @@
 	// global this
 	const global = window;
 	global.config = config;
-	
+
 	// get elements
 	const workspace = document.querySelector("workspace");
-	
+
 	// create console
 	const globalConsole = new Console(document.querySelector("full-overlay"));
-	
+
 	// page icon
 	const pageIcon = document.querySelector("link[rel=icon]");
-	
+
 	// page icon
 	const errorMessage = workspace.querySelector("p");
-	
+
 </script>
-<script src="fs/c/windows/lib64/mscorlib.dll/main.js"></script>
+<script src="root/blob/c/windows/lib64/mscorlib.dll/main.js"></script>
 <script>
-	
+
 	onload = async () => {
 		errorMessage.remove();
-		
+
 		// load dlls
 		globalConsole.writeln("Starting Windows v" + config.version + (config.beta ? "b" : "r") + "...\n");
-		
+
 		if (!config.beta) {
 			globalConsole.lock();
 			globalConsole.hideCursor();
 		}
-		
+
 		config.bootStartTime = new Date();
 		config.touch = "ontouchstart" in window;
-		config.cacheArgs = ""		
+		config.cacheArgs = ""
 		const steps = JSON.parse(localStorage[config.version + "_bootsteps"] || "[{}]");
 		const bootSteps = [];
-		
+
 		document.title = config.productName;
-		
+
 		const bootLog = globalConsole.createUnit("boot");
-		
+
 		// set beta attribute
 		if (config.beta) {
 			document.body.setAttribute("beta", "");
 		}
-		
+
 		const canvas = document.createElement("canvas");
 		canvas.width = canvas.height = 64;
 		const ctx = canvas.getContext("2d");
 		ctx.lineCap = "round";
 		ctx.lineWidth = 8;
-		
+
 		let i = 0;
 		const lastTotal = steps[steps.length - 1].time;
 
@@ -100,7 +100,7 @@
 			if (config.loaded) {
 				clearInterval(interval);
 			}
-			
+
 			if (matchMedia('(prefers-color-scheme: dark)').matches) {
 				ctx.strokeStyle = "white";
 			} else {
@@ -126,13 +126,13 @@
 				time: new Date() - config.bootStartTime,
 				dlls: (global.DLL ? DLL.loadedModules.map(l => l.path) : [])
 			});
-			
+
 			if (steps.length) {
 				document.title = "Booting (" + bootSteps.length + "/" + steps.length + ") - " + config.productName;
 			} else {
 				document.title = "Booting... - " + config.productName;
 			}
-			
+
 			if (!config.beta) {
 				globalConsole.unlock();
 				globalConsole.y = globalConsole.height - 4;
@@ -142,31 +142,31 @@
 				const progress = Math.min(Math.floor(width / steps.length * bootSteps.length), width);
 
 				globalConsole.write("█".repeat(progress) + "▌".repeat(width - progress));
-				
+
 				globalConsole.y = globalConsole.height - 2;
 				globalConsole.write(((DLL.modules[DLL.modules.length - 1] || {}).name || "").padEnd(globalConsole.width, " "));
-				
+
 				globalConsole.lock();
 			}
 		};
-		
+
 		let params = [];
-		
+
 		step();
-		
+
 		if (location.pathname == "/") {
 			params = await fetch("/config/init").then(r => r.json());
 		}
-		
+
 		step();
-		
+
 		const search = decodeURIComponent(location.search || config.injectedQuery || "");
-		
+
 		// add query config
 		if (search.substr(1)) {
 			if (search[1] == "+") {
 				params = [];
-				
+
 				for (let part of search.substr(2).split("&")) {
 					if (part[0] == "!") {
 						params.push({
@@ -186,7 +186,7 @@
 				params = JSON.parse(search.substr(1));
 			}
 		}
-		
+
 		const reload = async () => {
 			if (!Array.isArray(params)) {
 				params = [params];
@@ -213,18 +213,18 @@
 							ray: param.rayroot || param.rrsp + "/" + param.ray + "?name=" + param.name + "&root=" + param.rrsp
 						});
 					}
-					
+
 					if ("release-sim" in param) {
 						config.beta = false;
 					}
 				}
 			}
 		}
-		
+
 		step();
-		
+
 		await reload();
-		
+
 		// load fs
 		step();
 		await DLL.load("c/windows/lib64/fileSystem.dll", true, [
@@ -237,34 +237,34 @@
 			"pmpr.js",
 			"init.js"
 		]);
-		
+
 		// create fs
 		step();
-		
+
 		// load all config exts
 		for (let file of await fs.listAll("c/windows/ime/config")) {
 			bootLog.action("autoconfig", fs.name(file));
-			
+
 			step();
 			await DLL.load(file);
 		}
-		
+
 		// polyfills / runtime
 		step();
 		await DLL.load("c/windows/lib64/runtime.dll");
-		
+
 		// crypto
 		step();
 		await DLL.load("c/windows/lib64/cryptography.dll");
-		
+
 		// pmde
 		step();
 		await DLL.load("c/windows/lib64/pmde.dll");
-		
+
 		// pmde
 		step();
 		await DLL.load("c/windows/lib64/ftp.dll");
-		
+
 		// icons
 		step();
 		await DLL.load("c/windows/lib64/moricons.dll");
@@ -272,47 +272,47 @@
 		// assert testing
 		step();
 		await DLL.load("c/windows/lib64/assert.dll");
-		
+
 		// power manager
 		step();
 		await DLL.load("c/windows/lib64/pwrmgr.dll");
-		
+
 		// eventmanager
 		step();
 		await DLL.load("c/windows/lib64/evntmg.dll");
-		
+
 		// device management
 		step();
 		await DLL.load("c/windows/lib64/management.dll");
-		
+
 		// process management
 		step();
 		await DLL.load("c/windows/lib64/process.dll");
-		
+
 		// networking
 		step();
 		await DLL.load("c/windows/lib64/netstandard.dll");
-		
+
 		// cursor
 		step();
 		await DLL.load("c/windows/lib64/cursor.dll");
-		
+
 		// ui
 		step();
 		await DLL.load("c/windows/lib64/presentationFramework.dll");
-		
+
 		// forms
 		step();
 		await DLL.load("c/windows/input/forms.dll");
-		
+
 		// set webapp attribute if page is viewed in iOS webapp mode
 		if (navigator.standalone) {
 			await DLL.load("c/windows/lib64/mobile.dll");
 		}
-		
+
 		// run and wait for installers
 		await (await Application("c/windows/system32/installer.exe")).startAndWaitForSuccessfulExit();
-		
+
 		// run services (will continue while system is already booted)
 		(await Application("c/windows/system32/services.exe")).start();
 
@@ -335,5 +335,5 @@
 
 		config.loaded = true;
 	};
-	
+
 </script>
