@@ -92,12 +92,12 @@ window-body {
 
 window-buttons button {
 	padding: 0;
-    height: 14px;
-    width: 16px;
-    margin: 2px;
-    display: inline-block;
+	height: 14px;
+	width: 16px;
+	margin: 2px;
+	display: inline-block;
 	background-size: 13px 11px;
-    background-repeat: no-repeat;
+	background-repeat: no-repeat;
 	background-position: top left;
 	@cursor('arrow');
 }

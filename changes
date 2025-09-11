@@ -1,17 +1,17 @@
 version 0.0.9.9.4.2
-* minor fixes 
+* minor fixes
 
 version 0.0.9.9.4.1
 * fixed bsod when ftpsp fails to connect
 * fixed bsod not showing output when in non beta build
 * changed beta wallpaper color
-* added build info in beta 
+* added build info in beta
 
 version 0.0.9.9.4
 * removed scoped env
 * improved application speed
 * removed utm tracking
-* small fixes 
+* small fixes
 * added better loading info for non-beta boot builds
 
 version 0.0.9.9.3
@@ -22,13 +22,13 @@ version 0.0.9.9.3
 * added wizard
 * added hubs
 * added ftp storage provider
-* added usage information 
+* added usage information
 * added help.exe
-* added msi installers 
+* added msi installers
 
 version 0.0.9.9.2
 * added Management.device.size
-* added automatic window maximizing in smaller sizes 
+* added automatic window maximizing in smaller sizes
 
 version 0.0.9.9.1
 * added microsoft license to winver (design)
@@ -43,57 +43,57 @@ version 0.0.9.9
 * moved fs.icon to Icon
 * added process/shell output
 * added color console to cmd
-* fixed a ton of bugs 
+* fixed a ton of bugs
 * removed program tests
 
 version 0.0.9.8
 * added page favicon
 * added dynamic page title
 * moved back to black and white console
-* added noLinkIcon meta property to desktop 
+* added noLinkIcon meta property to desktop
 * added threading
 * added taskmgr tray icon
 * fixed cursors
-* added application.run cursor 
+* added application.run cursor
 
 version 0.0.9.7.1.7.3
 * fixed assert test export
 
 version 0.0.9.7.1.7.2
 * added assert.dll
-* added assert tests 
+* added assert tests
 
 version 0.0.9.7.1.7
-* fixed url encoding in queryconf 
+* fixed url encoding in queryconf
 
 version 0.0.9.7.1.6
 * added isNaN, isFinite, NaN and Array to application env
-* added undefined and null handler in scopetransform 
+* added undefined and null handler in scopetransform
 
 version 0.0.9.7.1.5
-* fixed scopetransform source atob/btoa error 
+* fixed scopetransform source atob/btoa error
 
 version 0.0.9.7.1.4
 * added gen/.prop files for easier parsing of env values
-* cleanup index.php 
+* cleanup index.php
 
 version 0.0.9.7.1.3
-* removed scaled fonts temporarily 
+* removed scaled fonts temporarily
 
 version 0.0.9.7.1.2
-* added scaled fonts 
+* added scaled fonts
 
 version 0.0.9.7.1.1
 * added directory metas to some directories
-* removed assembly/ the office leftovers 
+* removed assembly/ the office leftovers
 
 version 0.0.9.7.1
 * moved .meta
-* added drag and drop (explorer and backres) 
+* added drag and drop (explorer and backres)
 
 version 0.0.9.7
 * added scopetransform
-* added application.persistentState 
+* added application.persistentState
 * added process.state
 * added .meta
 * removed old icons
@@ -103,28 +103,28 @@ version 0.0.9.7
 * added custom cursor
 
 version 0.0.9.6
-* added dll meta 
+* added dll meta
 
 version 0.0.9.5.2
-* removed netyrn from tests 
+* removed netyrn from tests
 
 version 0.0.9.5.1
-* fixed tests 
+* fixed tests
 
 version 0.0.9.5
-* added exe meta 
+* added exe meta
 
 version 0.0.9.4.4
-* fixed screenshot delay 
+* fixed screenshot delay
 
 version 0.0.9.4.3
-* fixed screenshot delay 
+* fixed screenshot delay
 
 version 0.0.9.4.2
-* added screenshot delay 
+* added screenshot delay
 
 version 0.0.9.4.1
-* updated screenshot size 
+* updated screenshot size
 
 version 0.0.9.4
 * added favicon
@@ -132,112 +132,112 @@ version 0.0.9.4
 * added config/init loading
 
 version 0.0.9.3.3
-* added latest to win-versions 
+* added latest to win-versions
 
 version 0.0.9.3.2
-* added beta specific font loading 
+* added beta specific font loading
 
 version 0.0.9.3.1
 * added selective font download forcing
 
 version 0.0.9.3
-* added dynamic css files (csc) 
+* added dynamic css files (csc)
 
 version 0.0.9.2
 * added process error
-* added window render error 
+* added window render error
 * added application error
 
 version 0.0.9.1
-* fixed taskbar size 
+* fixed taskbar size
 
 version 0.0.9
 * added nogap
 * added tray icons
-* minor changes 
+* minor changes
 
 version 0.0.8.4.1
-* removed icosurf from tests 
+* removed icosurf from tests
 
 version 0.0.8.4
-* removed devenv.exe (moved to dev root) 
+* removed devenv.exe (moved to dev root)
 
 version 0.0.8.3
 * added query parameter rrsp
 * added win-roots
-* fixed autogens 
+* fixed autogens
 
 version 0.0.8.2.9.4
-* moved cover windows 
+* moved cover windows
 
 version 0.0.8.2.9.3
-* fixed waiting 
+* fixed waiting
 
 version 0.0.8.2.9.2
-* added waiting for window to test 
+* added waiting for window to test
 
 version 0.0.8.2.9.1
-* moved cover windows 
+* moved cover windows
 
 version 0.0.8.2.9
-* moved cover windows 
+* moved cover windows
 
 version 0.0.8.2.8
-* moved cover windows 
+* moved cover windows
 
 version 0.0.8.2.7
-* moved cover windows 
+* moved cover windows
 
 version 0.0.8.2.6
-* fixed tests/programs 
+* fixed tests/programs
 
 version 0.0.8.2.5
 * added more testing options
 
 version 0.0.8.2.4
-* fixed taskmgr not showing anything initially 
+* fixed taskmgr not showing anything initially
 
 version 0.0.8.2.3
-* removed deploy automagic 
+* removed deploy automagic
 
 version 0.0.8.2.2
-* fixed version issue 
+* fixed version issue
 
 version 0.0.8.2.1
-* fixed version issue 
+* fixed version issue
 
 version 0.0.8.2
 * added timer tracking to process
 * added process tab to taskmgr.exe
 * added tooltips
 * added providerOf to fs
-* added datagrid to ui 
+* added datagrid to ui
 
 version 0.0.8.1.6
-* reverted 0.0.8.1.5 
+* reverted 0.0.8.1.5
 
 version 0.0.8.1.5
-* added earlier log output in deploy 
+* added earlier log output in deploy
 
 version 0.0.8.1.4
-* added log output color to deploy 
+* added log output color to deploy
 
 version 0.0.8.1.3
-* formatted log output 
+* formatted log output
 
 version 0.0.8.1.2
-* fixed log output 
+* fixed log output
 
 version 0.0.8.1.1
-* added windows log output in deploy 
+* added windows log output in deploy
 
 version 0.0.8.1
 * added old scrollbars to browser
-* fixed window bottom padding 
+* fixed window bottom padding
 
 version 0.0.8.0.1
 * removed taskmgr.exe from autorun
-* fixed wininfo.exe 
+* fixed wininfo.exe
 
 version 0.0.8
 * removed meta420.exe
@@ -246,7 +246,7 @@ version 0.0.8
 * added taskmgr.exe
 
 version 0.0.7.4.7
-* removed memdog 
+* removed memdog
 
 version 0.0.7.4.6
 * fixed test paths
@@ -255,7 +255,7 @@ version 0.0.7.4.5
 * fixed test parameter passing
 
 version 0.0.7.4.4
-* fixed test path 
+* fixed test path
 
 version 0.0.7.4.3
 * fixed tests
@@ -264,32 +264,32 @@ version 0.0.7.4.2
 * added tests
 
 version 0.0.7.4.1
-* added file info to wininfo 
+* added file info to wininfo
 
 version 0.0.7.4
 * added logo to wininfo
 
 version 0.0.7.3.1
-* added testing/programs 
+* added testing/programs
 
 version 0.0.7.3
 * added globalConsole.output
 * added console output logging
 
 version 0.0.7.2.4
-* fixed wininfo size 
+* fixed wininfo size
 
 version 0.0.7.2.3
 * fixed deploy order
 
 version 0.0.7.2.2
-* added reset to reset all gen vars 
+* added reset to reset all gen vars
 
 version 0.0.7.2.1
 * fixed wininfo path
 
 version 0.0.7.2
-* added wininfo.exe 
+* added wininfo.exe
 
 version 0.0.7.1
 * removed more theoffice content
@@ -299,42 +299,42 @@ version 0.0.7
 * removed non-windows content
 
 version 0.0.6.6.2
-* fixed buildtime again 
+* fixed buildtime again
 
 version 0.0.6.6.1
 * fixed buildtime
 
 version 0.0.6.6
-* added buildtime to gen configs 
+* added buildtime to gen configs
 
 version 0.0.6.5.2
-* fixed cover size again 
+* fixed cover size again
 
 version 0.0.6.5.1
 * fixed cover screenshot size
 
 version 0.0.6.5
-* added cover to screenshots 
+* added cover to screenshots
 
 version 0.0.6.4
 * changed win-versions export
 
 version 0.0.6.3
-* added automatic tests 
+* added automatic tests
 
 version 0.0.6.2
 * added ray rendering to deploy
 
 version 0.0.6.1
-* added index.php rendering in deploy 
+* added index.php rendering in deploy
 
 version 0.0.6
 * added tray
 
 version 0.0.5
-* replaced lssp.dll with stzr.dll
+* replaced 	.dll with stzr.dll
 * fixed async fs calls
-* added interaction.lock 
+* added interaction.lock
 
 version 0.0.4
 * added memdog.exe
@@ -342,7 +342,7 @@ version 0.0.4
 * fixed rename for binary data
 
 version 0.0.3
-* added lssp.dll
+* added 	.dll
 * added fs.delete
 * added fs.rename
 * added fs.mime
@@ -351,16 +351,16 @@ version 0.0.3
 * fixed cursor image
 
 version 0.0.2.1
-* added support for multiple disks 
+* added support for multiple disks
 
 version 0.0.2
 * added provider based file system
 * added rrsp.dll
-* fixed inner window width 
+* fixed inner window width
 
 version 0.0.1
 * added ime/gen/version.js
 * added changelog to deploy
- 
+
 version 0.0.0
 * initial version

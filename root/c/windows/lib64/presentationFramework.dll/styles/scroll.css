@@ -1,50 +1,50 @@
 ::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
-    image-rendering: pixelated;
-    background: @root('c/windows/branding/scroll/background.png') repeat;
-    background-size: 2px 2px;
+	width: 16px;
+	height: 16px;
+	image-rendering: pixelated;
+	background: @root('c/windows/branding/scroll/background.png') repeat;
+	background-size: 2px 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #D6D3CE;
-    border: 1px solid #D6D3CE;
-    border-bottom-color: #424142;
-    border-right-color: #424142;
-    box-shadow: inset 0 1px 0 0px #FFFFFF, inset 0 -1px 0 0px #848284, inset 1px 0 0 0px #FFFFFF, inset -1px 0 0 0px #848284;
+	background: #D6D3CE;
+	border: 1px solid #D6D3CE;
+	border-bottom-color: #424142;
+	border-right-color: #424142;
+	box-shadow: inset 0 1px 0 0px #FFFFFF, inset 0 -1px 0 0px #848284, inset 1px 0 0 0px #FFFFFF, inset -1px 0 0 0px #848284;
 }
 
 ::-webkit-scrollbar-button:vertical:start:increment,
 ::-webkit-scrollbar-button:vertical:end:increment,
 ::-webkit-scrollbar-button:horizontal:start:increment,
 ::-webkit-scrollbar-button:horizontal:end:increment {
-    display: block;
-    position: relative;
-    width: 16px;
-    height: 16px;
-    image-rendering: pixelated;
-    background: #D6D3CE;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100%;
+	display: block;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	image-rendering: pixelated;
+	background: #D6D3CE;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100%;
 }
 
 ::-webkit-scrollbar-button:vertical:start:increment {
-    background-image: @root('c/windows/branding/scroll/up.png');
+	background-image: @root('c/windows/branding/scroll/up.png');
 }
 
 ::-webkit-scrollbar-button:vertical:end:increment {
-    background-image: @root('c/windows/branding/scroll/down.png');
+	background-image: @root('c/windows/branding/scroll/down.png');
 }
 
 ::-webkit-scrollbar-button:horizontal:start:increment {
-    background-image: @root('c/windows/branding/scroll/left.png');
+	background-image: @root('c/windows/branding/scroll/left.png');
 }
 
 ::-webkit-scrollbar-button:horizontal:end:increment {
-    background-image: @root('c/windows/branding/scroll/right.png');
+	background-image: @root('c/windows/branding/scroll/right.png');
 }
 
 ::-webkit-scrollbar-corner {
-    background: #D6D3CE;
+	background: #D6D3CE;
 }
