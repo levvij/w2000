@@ -26,26 +26,27 @@ DbClient.connectedClient.connect().then(async () => {
 		const index = [];
 
 		const scan = async (base: string) => {
+			index.push({
+				name: base,
+				type: 'd'
+			});
+
 			for (let fileName of await readdir(join(root, base))) {
 				if (fileName[0] != '.' || fileName == '.meta') {
 					const source = join(root, base, fileName);
 					const stats = await stat(source);
 
-					const item: any = {
-						name: join(base, fileName),
-						source: join('root', 'blob', base, fileName),
+					if (stats.isFile()) {
+						const item: any = {
+							name: join(base, fileName),
+							source: join('root', 'blob', base, fileName),
+							type: 'f',
+							size: stats.size,
+							mime: lookup(base),
 
-						ctime: +stats.ctime,
-						mtime: +stats.mtime
-					}
-
-					if (stats.isDirectory()) {
-						item.type = 'd';
-						item.size = 0;
-					} else {
-						item.type = 'f';
-						item.size = stats.size;
-						item.mime = lookup(base);
+							ctime: +stats.ctime,
+							mtime: +stats.mtime
+						}
 
 						if (fileName.endsWith('.lnk')) {
 							const content = (await readFile(source)).toString().split('\n');
@@ -56,11 +57,9 @@ DbClient.connectedClient.connect().then(async () => {
 								icon: content[2]
 							};
 						}
-					}
 
-					index.push(item);
-
-					if (stats.isDirectory()) {
+						index.push(item);
+					} else if (stats.isDirectory()) {
 						await scan(join(base, fileName));
 					}
 				}

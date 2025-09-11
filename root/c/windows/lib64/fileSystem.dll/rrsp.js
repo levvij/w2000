@@ -55,8 +55,8 @@ function RRSP(config, fs) {
 		},
 		times(path) {
 			return {
-				ctime: new Date(ray[path].ctime * 1000),
-				mtime: new Date(ray[path].mtime * 1000)
+				ctime: new Date(ray[path].ctime),
+				mtime: new Date(ray[path].mtime)
 			};
 		},
 		get disks() {
@@ -88,6 +88,8 @@ function RRSP(config, fs) {
 			};
 		},
 		exists(path) {
+			console.log(public, this)
+
 			return path in ray;
 		},
 		canRead(path) {

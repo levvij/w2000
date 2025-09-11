@@ -29,7 +29,7 @@ const config = {
 			}
 		},
 		providers: [
-				{
+			{
 				type: "rrsp",
 				order: 1,
 				name: "Remote",
