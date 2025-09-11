@@ -34,11 +34,6 @@ function RRSP(config, fs) {
 				localStorage[config.deleteList] = "[]";
 			}
 
-			// remove locally deleted files
-			for (let path of JSON.parse(localStorage[config.deleteList])) {
-				delete ray[path];
-			}
-
 			// load exeinfos
 			for (let path in ray) {
 				if ((path.endsWith(".exe") || path.endsWith(".dll")) && ray[path].type == "d") {
@@ -169,18 +164,10 @@ function RRSP(config, fs) {
 			return false;
 		},
 		canDelete(path) {
-			return path in ray;
+			return false;
 		},
 		async delete(path) {
-			if (await fs.isDirectory(path)) {
-				for (let file of await fs.list(path)) {
-					await fs.delete(file);
-				}
-			}
-
-			localStorage[config.deleteList] = JSON.stringify([...JSON.parse(localStorage[config.deleteList]), path]);
-
-			delete ray[path];
+			throw new Error('cannot delete files in read only file system');
 		},
 		mime(path) {
 			return ray[path].mime;
