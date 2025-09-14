@@ -3,11 +3,5 @@
 		"outFile": "managed/database.ts",
 		"connection": {},
 		"runContext": true
-	},
-	"services": {
-		"serverOutFile": "managed/server.ts",
-		"scan": [],
-		"endpoints": [
-		]
 	}
 }

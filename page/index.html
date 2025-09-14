@@ -209,7 +209,6 @@
 							type: "rrsp",
 							name: param.name || "ParamRRSP",
 							root: param.rrsp,
-							deleteList: "rrsp_" + param.rssp + "_dl",
 							ray: param.rayroot || param.rrsp + "/" + param.ray + "?name=" + param.name + "&root=" + param.rrsp
 						});
 					}
@@ -233,6 +232,7 @@
 			"main.js",
 			"rrsp.js",
 			"stzr.js",
+			'ebfs.js',
 			"pmpr.js",
 			"init.js"
 		]);

@@ -1,6 +1,10 @@
 async function main() {
 	if (!process.arguments[0]) {
 		for (let file of await fs.list(configuration.msi)) {
+			if (file in application.persistentState) {
+				continue;
+			}
+
 			const content = JSON.parse(await fs.read(file));
 
 			application.log.action("install/" + content.name, content);
@@ -20,8 +24,10 @@ async function main() {
 				}
 			}
 
-			application.log.action("install/" + content.name, "deleting installer...", file);
-			await fs.delete(file);
+			application.log.action("install/" + content.name, 'marking complete');
+
+			application.persistentState[file] = true;
+			application.persistentState.save();
 
 			application.log.action("install/" + content.name, "installed");
 		}

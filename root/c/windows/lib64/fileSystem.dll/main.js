@@ -63,7 +63,7 @@ async function NTFS() {
 							};
 						}
 					}
-					
+
 					if (info.hubs) {
 						Hub.import(file, info.hubs);
 					}
@@ -108,14 +108,14 @@ async function NTFS() {
 		// reloads whole file system
 		async reload() {
 			log && log.action("reload");
-			
+
 			metaCache = {
 				"": null
 			};
 
 			for (let provider of providers) {
 				log && log.action("reload-fs", provider.name);
-				
+
 				await provider.reload();
 			}
 
@@ -159,17 +159,17 @@ async function NTFS() {
 
 			return listener;
 		},
-		
+
 		async diskInfo(disk) {
 			if (!(await public.isDisk(disk))) {
 				throw new Error("'" + disk + "' is not a disk");
 			}
-			
+
 			return {
 				providers: (await public.providers.mapAwait(async p => await p.diskInfo(disk))).map(i => i || {}).map(info => ({
 					name: info.name,
-					used: info.used || 0, 
-					capacity: info.capacity || 0, 
+					used: info.used || 0,
+					capacity: info.capacity || 0,
 					free: info.free || 0
 				}))
 			};
@@ -194,7 +194,7 @@ async function NTFS() {
 				if (await provider.canCreate(path, content, mime)) {
 					await provider.createFile(path, content, mime);
 					await updateFileExts();
-					
+
 					if (Path.name(path) == ".meta") {
 						metaCache[path] = JSON.parse(content);
 					}
@@ -225,7 +225,7 @@ async function NTFS() {
 				if (await provider.canCreate(path, blob)) {
 					await provider.createBlobFile(path, blob);
 					await updateFileExts();
-					
+
 					if (Path.name(path) == ".meta") {
 						metaCache[path] = JSON.parse(content);
 					}
@@ -253,7 +253,7 @@ async function NTFS() {
 				if (await provider.canWrite(path, content)) {
 					await provider.write(path, content);
 					await updateFileExts();
-					
+
 					if (Path.name(path) == ".meta") {
 						metaCache[path] = JSON.parse(content);
 					}
@@ -266,7 +266,7 @@ async function NTFS() {
 
 			throw new Error("Cannot write '" + path + "'. Access denied");
 		},
-		// writes blob to existing file 
+		// writes blob to existing file
 		async writeBlob(path, blob) {
 			path = Path.fix(path);
 
@@ -280,7 +280,7 @@ async function NTFS() {
 				if (await provider.canWrite(path, blob)) {
 					await provider.write(path, blob);
 					await updateFileExts();
-					
+
 					if (Path.name(path) == ".meta") {
 						metaCache[path] = JSON.parse(content);
 					}
@@ -299,14 +299,15 @@ async function NTFS() {
 
 			log && log.action("mkdir", path);
 
+			if (await public.exists(path)) {
+				log && log.action("mkdir-exists", path);
+
+				return;
+			}
+
 			for (let provider of providers) {
 				if (await provider.canCreate(path)) {
 					await provider.createDirectory(path);
-					
-					if (Path.name(path) == ".meta") {
-						metaCache[path] = JSON.parse(content);
-					}
-
 					await flush(path);
 
 					return;
@@ -338,9 +339,9 @@ async function NTFS() {
 		// get meta
 		async meta(path) {
 			path = Path.fix(path);
-			
+
 			log && log.action("meta", path);
-			
+
 			if (path in metaCache) {
 				return metaCache[path];
 			}
@@ -353,11 +354,11 @@ async function NTFS() {
 				if (await public.exists(path + "/.meta")) {
 					return JSON.parse((await public.read(path + "/.meta")) || null);
 				}
-			} 
-			
+			}
+
 			if (await public.isFile(path)) {
 				const parentMeta = await public.meta(Path.parentPath(path));
-				
+
 				if (parentMeta && parentMeta.files) {
 					return parentMeta.files[Path.name(path)];
 				}
@@ -553,7 +554,7 @@ async function NTFS() {
 			if (await public.exists(path)) {
 				return path;
 			}
-			
+
 			for (let p of paths) {
 				for (let file of await public.list(p)) {
 					if (Path.name(file) == path) {
@@ -761,13 +762,13 @@ async function NTFS() {
 			if (!(name in allProviders)) {
 				throw new Error("Provider-Type '" + name + "' does not exist");
 			}
-			
+
 			const provider = allProviders[name](config, public);
-			
+
 			if (provider.validate) {
 				await provider.validate();
 			}
-			
+
 			providers.push(provider);
 		}
 	}
@@ -789,7 +790,7 @@ NTFS.registerProvider = (name, handler) => {
 	if (name in allProviders) {
 		throw new Error("Provider '" + name + "' already registered");
 	}
-	
+
 	allProviders[name] = handler;
 };
 

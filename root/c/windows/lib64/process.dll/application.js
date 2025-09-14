@@ -112,7 +112,8 @@ function Application(path, ...args) {
 
 		persistentState.save = async () => {
 			let f = "";
-			for (let part of persistentPath.split("/")) {
+
+			for (let part of persistentPath.split("/").slice(0, -1)) {
 				if (!(await fs.exists(f + part))) {
 					await fs.mkdir(f + part);
 				}
@@ -181,7 +182,7 @@ function Application(path, ...args) {
 			requestAnimationFrame(async () => {
 				let content = "";
 				const poolId = `pool_${Cypp.createId()}`;
-				
+
 				for (let file of [
 					path + "/init.js",
 					...(await fs.listAll(path)).filter(l => Path.name(l) != "main.js" && Path.name(l) != "init.js"),
@@ -191,18 +192,18 @@ function Application(path, ...args) {
 						content += "\n\n/* " + file + " */\n" + await fs.read(file);
 					}
 				}
-				
+
 				// create script
 				const script = document.createElement("script");
 				script.setAttribute("application", path);
 				script.setAttribute("poolid", poolId);
-				
+
 				const keys = [...Object.keys(window), ...Object.keys(params)].filter((e, i, a) => a.indexOf(e) == i);
-				
+
 				const blob = new Blob([
 					`Application[${JSON.stringify(poolId)}] = function (${keys}) { ${content}; main(process.arguments); }`
 				]);
-				
+
 				// assign arguments
 				script.src = URL.createObjectURL(blob);
 				script.onload = () => {
@@ -215,7 +216,7 @@ function Application(path, ...args) {
 								process.onexit.subscribe(error => {
 									done(error);
 								});
-								
+
 								app.start();
 							});
 						},
@@ -225,19 +226,19 @@ function Application(path, ...args) {
 									if (error) {
 										reject(new Error("Application exited with error: '" + error + "'"));
 									}
-									
+
 									done(error);
 								});
-								
+
 								app.start();
 							});
 						},
 						process
 					};
-					
+
 					done(app);
 				};
-		
+
 				document.head.appendChild(script);
 			});
 		} else {

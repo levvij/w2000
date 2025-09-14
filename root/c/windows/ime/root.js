@@ -33,8 +33,23 @@ const config = {
 				type: "rrsp",
 				order: 1,
 				name: "Remote",
-				root: "fs/",
-				deleteList: "rrsp_dl"
+				root: "fs/"
+			},
+			{
+				type: 'ebfs',
+				order: 2,
+				name: 'Encryped Personal Bucket',
+				local: {
+					key: 'ebfs-base',
+					encrypt: 'ebfs-encrypt'
+				},
+				maxSize: 1024 ** 4,
+				root: 'bucket',
+				mounts: [
+					'c/programData',
+					'c/programFiles',
+					'c/users/guest'
+				]
 			}
 		],
 		root: "root/blob/",

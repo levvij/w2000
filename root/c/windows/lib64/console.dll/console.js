@@ -107,22 +107,22 @@ function Console(parent) {
 			const measurementElement = document.createElement("console-m");
 			measurementElement.textContent = "#";
 			element.appendChild(measurementElement);
-			
+
 			content = document.createElement("console-text");
 			element.appendChild(content);
-			
+
 			cursor = document.createElement("console-cursor");
 			cursor.textContent = "#";
 			element.appendChild(cursor);
-			
+
 			const charSize = {
 				height: measurementElement.offsetHeight,
 				width: measurementElement.offsetWidth
 			};
-			
+
 			public.width = Math.floor(element.offsetWidth / charSize.width);
 			public.height = Math.floor(element.offsetHeight / charSize.height);
-			
+
 			measurementElement.remove();
 			public.clear(true);
 		},
@@ -144,11 +144,15 @@ function Console(parent) {
 			content.textContent = s.join("\n");
 			updateCursor();
 		},
-		write(s) {
+		write(s, overwriteErrorMode) {
+			if (public.errorModeEnabled && !overwriteErrorMode) {
+				return;
+			}
+
 			s = s.toString();
 
 			public.output += s;
-			
+
 			if (!locked) {
 				// write string
 				for (let c of s) {
@@ -159,8 +163,8 @@ function Console(parent) {
 				updateCursor();
 			}
 		},
-		writeln(s) {
-			public.write(s + "\n");
+		writeln(s, overwriteErrorMode) {
+			public.write(s + "\n", overwriteErrorMode);
 		},
 		createUnit(name) {
 			// create new unit in console
@@ -172,13 +176,17 @@ function Console(parent) {
 			parent.removeAttribute("hidden");
 		},
 		hide() {
-			parent.setAttribute("hidden", "");
+			if (!public.errorModeEnabled) {
+				parent.setAttribute("hidden", "");
+			}
 		},
 
 		// enable error mode for globalConsole
 		errorMode() {
 			parent.setAttribute("bsod", "");
 			public.show();
+
+			public.errorModeEnabled = true;
 		},
 
 		// copy cursor position

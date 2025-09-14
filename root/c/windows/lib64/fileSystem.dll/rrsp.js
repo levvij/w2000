@@ -88,8 +88,6 @@ function RRSP(config, fs) {
 			};
 		},
 		exists(path) {
-			console.log(public, this)
-
 			return path in ray;
 		},
 		canRead(path) {
