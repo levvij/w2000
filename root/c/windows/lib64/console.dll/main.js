@@ -33,14 +33,28 @@ onerror = function (message, file, line, character, error) {
 			// remove 'at' (any language compatible)
 			source = source.trim().split(/\s/).slice(1).join(' ');
 
-			const line = source.match(/([0-9]+)/g).at(-2);
-			const column = source.match(/([0-9]+)/g).at(-1);
+			const line = +source.match(/([0-9]+)/g).at(-2);
+			const column = +source.match(/([0-9]+)/g).at(-1);
 
 			// remove source file
-			source = source.replace(`blob:${location.href}`, '');
-			source = source.replace(/\(?[0-9a-f\-]+\:[0-9]+\:[0-9]+\)?/, '');
+			console.log(source);
 
-			globalConsole.writeln(`${line.toString().padStart(6, '0')} ${column.toString().padStart(4, '0')}  ${source}`, true);
+			const sourceLine = DLL.findSourceLine(source, line);
+
+			source = source.replace(`blob:${location.href}`, '');
+			source = source.replace(/\(?[0-9a-f\-]+\:[0-9]+\:[0-9]+\)?$/, '');
+
+			globalConsole.write(`${line.toString().padStart(6, '0')} ${column.toString().padStart(4, '0')}  `, true);
+
+			if (sourceLine) {
+				const leadingWhitespaces = sourceLine.length - sourceLine.trimStart().length;
+				const inset = 13;
+
+				globalConsole.writeln(sourceLine.trim(), true);
+				globalConsole.writeln(' '.repeat(inset + column - leadingWhitespaces - 1) + '^', true);
+			} else {
+				globalConsole.writeln(source, true);
+			}
 		}
 	}
 

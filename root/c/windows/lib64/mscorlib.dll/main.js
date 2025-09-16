@@ -16,6 +16,18 @@ DLL.modules = [];
 // crossloader
 DLL.crossload = {};
 
+DLL.sources = [];
+
+DLL.findSourceLine = (blob, line) => {
+	const source = DLL.sources.find(source => blob.includes(source.blob));
+
+	if (!source) {
+		return;
+	}
+
+	return source.compiledFunction.split('\n')[line - 1];
+};
+
 // load DLL
 DLL.load = async (path, forceReload, files = ["/main.js"]) => {
 	if (!forceReload) {
@@ -61,20 +73,22 @@ DLL.load = async (path, forceReload, files = ["/main.js"]) => {
 		return new Promise(done => {
 			const id = "_" + Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2) + +(new Date());
 			DLL.crossload[id] = {};
-			
+
 			const fname = "library_" + path.replace(/[^a-zA-Z0-9]/g, "_");
 
 			let compiledFunction;
 
 			try {
-				compiledFunction = (new(Object.getPrototypeOf(async function() {}).constructor)("DLL", "configuration", "// " + path + "\n\n" + body));
+				compiledFunction = (new (Object.getPrototypeOf(async function () { }).constructor)("DLL", "configuration", "// " + path + "\n\n" + body))
+					.toString()
+					.replace("anonymous", fname);
 			} catch (e) {
 				// throw parsing errors
 				throw new Error(e.message.trim() + "@" + p);
 			}
-			
+
 			const blob = new Blob([
-				"DLL.crossload." + id + "." + fname + " = " + compiledFunction.toString().replace("anonymous", fname)
+				`DLL.crossload.${id}.${fname} = ${compiledFunction}`
 			], {
 				type: "text/plain"
 			});
@@ -82,7 +96,12 @@ DLL.load = async (path, forceReload, files = ["/main.js"]) => {
 			const script = document.createElement("script");
 			script.src = URL.createObjectURL(blob);
 			script.async = true;
-			
+
+			DLL.sources.push({
+				blob: script.src.match(/[0-9a-f\-]{36}/)[0],
+				compiledFunction
+			});
+
 			script.onload = () => {
 				// run main dll function with DLL object (masked)
 				DLL.crossload[id][fname]({
@@ -112,7 +131,7 @@ DLL.load = async (path, forceReload, files = ["/main.js"]) => {
 					done();
 				});
 			};
-			
+
 			document.head.appendChild(script);
 		});
 	};
