@@ -7,11 +7,11 @@ async function main() {
 
 			const content = JSON.parse(await fs.read(file));
 
-			application.log.action("install/" + content.name, content);
+			application.log.action("install", content.name);
 
 			if (content.services) {
 				for (let service of content.services) {
-					application.log.action("install/" + content.name, "installing service...", service);
+					application.log.action("install", "installing service...", service);
 
 					const process = await Application.load(...configuration.registerService.replace("%f", service));
 					await new Promise(done => {
@@ -20,16 +20,16 @@ async function main() {
 						});
 					});
 
-					application.log.action("install/" + content.name, "service installed");
+					application.log.action("install", "service installed");
 				}
 			}
 
-			application.log.action("install/" + content.name, 'marking complete');
+			application.log.action("install", 'marking complete');
 
 			application.persistentState[file] = true;
 			application.persistentState.save();
 
-			application.log.action("install/" + content.name, "installed");
+			application.log.action("install", "installed");
 		}
 	}
 

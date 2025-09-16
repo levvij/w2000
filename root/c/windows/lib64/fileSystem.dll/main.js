@@ -7,7 +7,7 @@
 // we scan all files in reload with ray.php to know what exists
 // all link (.lnk) files are preresolved
 const log = config.beta && globalConsole.createUnit("fs");
-const allProviders = {};
+const providerTypes = {};
 
 async function NTFS() {
 	const providers = [];
@@ -103,7 +103,7 @@ async function NTFS() {
 	const public = {
 		providers,
 		get availableProviders() {
-			return Object.keys(allProviders);
+			return Object.keys(providerTypes);
 		},
 		// reloads whole file system
 		async reload() {
@@ -759,44 +759,52 @@ async function NTFS() {
 			return (await fs.isDirectory(path)) && !(await fs.isExecuteable(path));
 		},
 		async addProvider(name, config) {
-			if (!(name in allProviders)) {
+			if (!(name in providerTypes)) {
 				throw new Error("Provider-Type '" + name + "' does not exist");
 			}
 
-			const provider = allProviders[name](config, public);
-
-			if (provider.validate) {
-				await provider.validate();
-			}
+			const provider = providerTypes[name].handler(config, public);
+			await provider.reload();
 
 			providers.push(provider);
+
+			provider.order = config.order;
+			providers.sort((a, b) => a.order - b.order);
+		},
+		async loadAvailableProviders() {
+			for (let configuration of config.fs.providers) {
+				if (!configuration.installed) {
+					if (configuration.type in providerTypes) {
+						const type = providerTypes[configuration.type];
+
+						if (type.requirement()) {
+							await public.addProvider(configuration.type, configuration);
+							configuration.installed = true;
+						}
+					} else {
+						throw new Error("Provider '" + configuration.type + "' not found");
+					}
+				}
+			}
 		}
 	}
 
-	for (let prov of config.fs.providers.sort((a, b) => a.order == b.order ? 0 : a.order > b.order ? 1 : -1)) {
-		if (prov.type in allProviders) {
-			providers.push(allProviders[prov.type](prov, public));
-		} else {
-			throw new Error("Provider '" + prov.type + "' not found");
-		}
-	}
-
-	await public.reload();
+	public.reload();
 
 	return public;
 }
 
-NTFS.registerProvider = (name, handler) => {
-	if (name in allProviders) {
+NTFS.registerProvider = (name, handler, requirement = () => true) => {
+	if (name in providerTypes) {
 		throw new Error("Provider '" + name + "' already registered");
 	}
 
-	allProviders[name] = handler;
+	providerTypes[name] = { handler, requirement };
 };
 
 Object.defineProperty(NTFS, "providerTypes", {
 	get() {
-		return Object.keys(allProviders);
+		return Object.keys(providerTypes);
 	}
 })
 

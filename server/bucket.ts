@@ -65,7 +65,7 @@ export const registerBucker = (app, database: DbContext) => {
 			.count();
 
 		if (existing) {
-			return response.status(500).end();
+			return response.json(false);
 		}
 
 		const entry = new File();

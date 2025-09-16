@@ -21,6 +21,9 @@ function EBFS(config, fs) {
 		return false;
 	};
 
+	const cryper = () => Cypp.crypt.nhbc5(encryptionKey, 4);
+	const encryptPath = path => cryper().encryptString(path);
+
 	const public = {
 		name: config.name,
 		free: 0,
@@ -34,9 +37,7 @@ function EBFS(config, fs) {
 				key = await (await fetch(`${config.root}/create`)).json();
 				localStorage.setItem(config.local.key, key);
 
-				const bytes = new Uint8Array(64);
-				crypto.getRandomValues(bytes);
-				encryptionKey = btoa(bytes);
+				encryptionKey = Cypp.createKey(64);
 				localStorage.setItem(config.local.encrypt, encryptionKey);
 
 				log.action('create', `bucket '${key}'`);
@@ -51,8 +52,11 @@ function EBFS(config, fs) {
 			// last item of ray is the total size of the remote files
 			public.used = public.capacity = lray.reduce((a, c) => a + c.size, 0);
 
+			// decode paths
 			for (let item of lray) {
-				ray[item.name] = item;
+				const path = cryper().decryptString(item.name);
+
+				ray[path] = item;
 			}
 
 			// load exeinfos
@@ -107,10 +111,10 @@ function EBFS(config, fs) {
 			return path in ray;
 		},
 		async read(path) {
-			return await fetch(`${config.root}/${key}/${encodeURIComponent(path)}`).then(r => r.text());
+			return await fetch(`${config.root}/${key}/${ray[path].name}`).then(r => r.text());
 		},
 		async readBlob(path) {
-			return await fetch(`${config.root}/${key}/${encodeURIComponent(path)}`).then(r => r.blob());
+			return await fetch(`${config.root}/${key}/${ray[path].name}`).then(r => r.blob());
 		},
 		readURI(path) {
 			throw new Error('EBFS does not support direct URI loading.');
@@ -154,16 +158,16 @@ function EBFS(config, fs) {
 			return items;
 		},
 		async createDirectory(path) {
-			await fetch(`${config.root}/directory/${key}/${encodeURIComponent(path)}`, {
-				method: 'post'
-			}).then(response => response.json());
-
 			ray[path] = {
-				name: path,
+				name: encryptPath(path),
 				type: 'd',
 				ctime: +new Date(),
 				mtime: +new Date()
 			};
+
+			await fetch(`${config.root}/directory/${key}/${ray[path].name}`, {
+				method: 'post'
+			}).then(response => response.json());
 		},
 		async createFile(path, content, mime) {
 			await this.createBlobFile(
@@ -173,29 +177,29 @@ function EBFS(config, fs) {
 		},
 		async createBlobFile(path, blob) {
 			ray[path] = {
-				name: path,
+				name: encryptPath(path),
 				type: 'f',
 				ctime: +new Date(),
 				mtime: +new Date(),
-				mime: blob.type
+				mimeType: blob.type
 			}
 
-			public.writeBlob(path, blob);
+			await public.writeBlob(path, blob);
 		},
 		async write(path, content) {
-			const entry = ray[path];
+			const type = public.mime(path);
 
-			if (!entry || !entry.mimeType) {
+			if (!type) {
 				throw new Error(`File '${path}' does not exist. Call create first`);
 			}
 
 			await public.writeBlob(
 				path,
-				new Blob([content], { type: entry.mime })
+				new Blob([content], { type })
 			);
 		},
 		async writeBlob(path, blob) {
-			await fetch(`${config.root}/file/${key}/${encodeURIComponent(path)}/${encodeURIComponent(blob.type)}`, {
+			await fetch(`${config.root}/file/${key}/${ray[path].name}/${encodeURIComponent(blob.type)}`, {
 				method: 'post',
 				body: blob
 			}).then(response => response.json());
@@ -213,7 +217,7 @@ function EBFS(config, fs) {
 			return mounted(path);
 		},
 		async delete(path) {
-			await fetch(`${config.root}/${key}/${encodeURIComponent(path)}`, {
+			await fetch(`${config.root}/${key}/${ray[path].name}`, {
 				method: 'delete'
 			}).then(response => response.json());
 
@@ -230,4 +234,4 @@ function EBFS(config, fs) {
 	return public;
 }
 
-NTFS.registerProvider("ebfs", EBFS);
+NTFS.registerProvider("ebfs", EBFS, () => globalThis.Cypp);
